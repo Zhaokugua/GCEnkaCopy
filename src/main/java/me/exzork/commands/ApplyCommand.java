@@ -51,11 +51,11 @@ public class ApplyCommand implements CommandHandler{
             HashMap<Integer,Integer> costumesData = new HashMap<>();
             HashMap<Integer,Avatar> avatars = new HashMap<>();
 
-            CommandHandler.sendMessage(sender, "Giving characters, artifacts, and weapons...");
+            CommandHandler.sendMessage(sender, "正在获取角色、武器和圣遗物...");
             for (AvatarInfoListItem avatarInfoListItem : response.getAvatarInfoList()){
                 Avatar avatar = sender.getAvatars().getAvatarById(avatarInfoListItem.getAvatarId());
                 if (avatar == null){
-                    String commandAvatar = "givechar "+avatarInfoListItem.getAvatarId()+" "+response.getPlayerInfo().getShowAvatarInfoList().stream().filter(a -> a.getAvatarId() == avatarInfoListItem.getAvatarId()).findFirst().get().getLevel();
+                    String commandAvatar = "give "+avatarInfoListItem.getAvatarId()+" lv"+response.getPlayerInfo().getShowAvatarInfoList().stream().filter(a -> a.getAvatarId() == avatarInfoListItem.getAvatarId()).findFirst().get().getLevel();
                     GCEnkaCopy.getInstance().getLogger().info(commandAvatar);
                     CommandMap.getInstance().invoke(sender,sender,commandAvatar);
                     do {
@@ -97,7 +97,7 @@ public class ApplyCommand implements CommandHandler{
                 avatars.put(avatarInfoListItem.getAvatarId(), avatar);
             }
 
-            CommandHandler.sendMessage(sender, "Setting constellations...");
+            CommandHandler.sendMessage(sender, "正在设置命座...");
             for (int avatarId: constellationsData.keySet()){
                 Avatar avatar = avatars.get(avatarId);
 
@@ -114,7 +114,7 @@ public class ApplyCommand implements CommandHandler{
                 }
             }
 
-            CommandHandler.sendMessage(sender, "Setting skills...");
+            CommandHandler.sendMessage(sender, "正在设置天赋...");
             for (int avatarId: skillsData.keySet()) {
                 Avatar avatar = avatars.get(avatarId);
                 for (String skillId : skillsData.get(avatarId).keySet()) {
@@ -127,7 +127,7 @@ public class ApplyCommand implements CommandHandler{
                 }
             }
 
-            CommandHandler.sendMessage(sender, "Equipping items...");
+            CommandHandler.sendMessage(sender, "正在装备武器和圣遗物...");
             for (int avatarId: itemsData.keySet()){
                 Avatar avatar = avatars.get(avatarId);
                 for (GameItem gameItem: itemsData.get(avatarId)){
@@ -146,10 +146,10 @@ public class ApplyCommand implements CommandHandler{
                 avatar.save();
             }
 
-            CommandHandler.sendMessage(sender, "Done copying data from uid : "+args.get(0)+" nickname : "+response.getPlayerInfo().getNickname());
+            CommandHandler.sendMessage(sender, "已完成uid: "+args.get(0)+" 昵称: "+response.getPlayerInfo().getNickname()+"的拷贝！");
 
         }catch (Exception e){
-            CommandHandler.sendMessage(sender, "Error while loading data! Make sure your uid/name is correct and your profile is public.");
+            CommandHandler.sendMessage(sender, "加载数据时出错！确保你的uid或者昵称输入正确而且资料处于公开状态。");
             e.printStackTrace();
         }
     }
