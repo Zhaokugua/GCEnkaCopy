@@ -146,7 +146,7 @@ public class ApplyCommand implements CommandHandler{
                 avatar.save();
             }
 
-            CommandHandler.sendMessage(sender, "已完成uid: "+args.get(0)+" 昵称: "+response.getPlayerInfo().getNickname()+"的拷贝！");
+            CommandHandler.sendMessage(sender, "已完成uid: "+args.get(0)+" 昵称: "+response.getPlayerInfo().getNickname()+" 的复制！");
 
         }catch (Exception e){
             CommandHandler.sendMessage(sender, "加载数据时出错！确保你的uid或者昵称输入正确而且资料处于公开状态。");
