@@ -6,6 +6,7 @@ Usage : `/enka <official uid|name>` <br>
 Permission : player.give + player.givechar + player.giveart
 
 从enka.shinshin.moe复制官服数据到Grasscutter
+
 会复制角色、圣遗物、武器，而且都会被装备到对应角色身上，没有必要重新进行搭配！
 
 使用方法：`/enka <官服 uid|昵称>` <br>
