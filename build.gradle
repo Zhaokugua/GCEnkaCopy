@@ -10,20 +10,25 @@ repositories {
 }
 
 dependencies {
-    implementation files("libs/grasscutter-1.2.1-dev.jar")
+    implementation files("libs/grasscutter-1.2.3-dev-beb6906.jar")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.google.guava:guava:28.2-jre'
 }
 
 test {
     useJUnitPlatform()
 }
 
+tasks.withType(JavaCompile) {
+options.encoding = "UTF-8"
+}
+
 jar {
     jar.baseName = 'GCEnkaCopy'
     from {
         configurations.runtimeClasspath.collect {
-            if (!(it.name in ["grasscutter-1.2.1-dev.jar"]) && !it.isDirectory()) {
+            if (!(it.name in ["grasscutter-1.2.3-dev-beb6906.jar"]) && !it.isDirectory()) {
                 zipTree(it)
             }
         }
